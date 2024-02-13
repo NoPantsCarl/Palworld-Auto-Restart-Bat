@@ -16,7 +16,7 @@ curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST
 timeout /t 14400 /nobreak > NUL 2>&1
 
 REM Check if PalServer-Win64-Test-Cmd.exe is running
-tasklist /FI "IMAGENAME eq PalServer-Win64-Test-Cmd.exe" | find /I "PalServer-Win64-Test-Cmd.exe" >NUL
+tasklist /FI "IMAGENAME eq PalServer-Win64-Test-Cmd.exe" /FI "WINDOWTITLE eq C:\SteamServers\steamapps\common\PalServer\Pal\Binaries\Win64\PalServer-Win64-Test-Cmd.exe" | find /I "PalServer-Win64-Test-Cmd.exe" >NUL
 if errorlevel 1 (
     echo [%TIME%] PalServer-Win64-Test-Cmd.exe is not running. Restarting...
     goto :start_server
