@@ -2,7 +2,7 @@
 
 :update_check
 echo [%TIME%] Checking for updates...
-C:\PalWorldDedicatedServer\Server01\steamcmd.exe +login anonymous +app_update 2394010 +quit
+C:\SteamServers\steamapps\common\PalServer\steamcmd.exe +login anonymous +app_update 2394010 +quit
 if errorlevel 1 (
     echo [%TIME%] Error: Checking for updates failed.
     goto :update_check
@@ -10,13 +10,13 @@ if errorlevel 1 (
 
 :start_server
 echo [%TIME%] Launching server...
-start PalServer-Win64-Test-Cmd.exe EpicApp=PalServer -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS
+start "" "C:\SteamServers\steamapps\common\PalServer\Pal\Binaries\Win64\PalServer-Win64-Test-Cmd.exe" EpicApp=PalServer -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS
 timeout /t 120 /nobreak > NUL 2>&1
 curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"**```fix\nServer One Is Online```**\"}" Your Discord Webhook Url > NUL 2>&1
-timeout /t 28200 /nobreak > NUL 2>&1
+timeout /t 14400 /nobreak > NUL 2>&1
 
 REM Check if PalServer-Win64-Test-Cmd.exe is running
-tasklist /FI "IMAGENAME eq C:\PalWorldDedicatedServer\Server01\steamapps\common\PalServer\Pal\Binaries\Win64\PalServer-Win64-Test-Cmd.exe" | find /I "PalServer-Win64-Test-Cmd.exe" >NUL
+tasklist /FI "IMAGENAME eq PalServer-Win64-Test-Cmd.exe" | find /I "PalServer-Win64-Test-Cmd.exe" >NUL
 if errorlevel 1 (
     echo [%TIME%] PalServer-Win64-Test-Cmd.exe is not running. Restarting...
     goto :start_server
@@ -27,8 +27,8 @@ echo [%TIME%] PalServer-Win64-Test-Cmd.exe is running.
 :4hour_backup
 echo [%TIME%] Initiating Four Hour Backup...
 start ARRCON.exe -H 192.0.0.1 -P 25577 -p "Admin Password" "save"
-set SOURCE_DIR="C:\PalWorldDedicatedServer\Server01\steamapps\common\PalServer\Pal\Saved\SaveGames\"
-set BACKUP_DIR="C:\Users\Administrator\Desktop\Vanilla_BackUp"
+set SOURCE_DIR="C:\SteamServers\steamapps\common\PalServer\Pal\Pal\Saved\SaveGames\"
+set BACKUP_DIR="C:\Users\NoPantsCarl\Documents\PalWorld_BackUps"
 set DATE=%date:~-4,4%%date:~-10,2%%date:~-7,2%_%time:~0,2%%time:~3,2%%time:~6,2%
 
 "C:\Program Files\7-Zip\7z.exe" a -tzip "%BACKUP_DIR%\backup_%DATE%.zip" %SOURCE_DIR%
@@ -65,7 +65,7 @@ start ARRCON.exe -H 192.0.0.1 -P 25575 -p "Admin Password" "Broadcast ServerRest
 timeout /t 60 /nobreak > NUL 2>&1
 if errorlevel 1 (
     echo [%TIME%] Error: Broadcasting 2 min warning failed.
-    goto :broadcasting_5min
+    goto :broadcasting_2min
 )
 
 :saving
@@ -88,14 +88,14 @@ if errorlevel 1 (
 
 :backup
 echo [%TIME%] Backing Up...
-set SOURCE_DIR="C:\PalWorldDedicatedServer\Server01\steamapps\common\PalServer\Pal\Saved\SaveGames\"
-set BACKUP_DIR="C:\Users\Administrator\Desktop\Vanilla_BackUp"
+set SOURCE_DIR="C:\SteamServers\steamapps\common\PalServer\Pal\\Saved\SaveGames\"
+set BACKUP_DIR="C:\Users\NoPantsCarl\Documents\PalWorld_BackUps"
 set DATE=%date:~-4,4%%date:~-10,2%%date:~-7,2%_%time:~0,2%%time:~3,2%%time:~6,2%
 
 "C:\Program Files\7-Zip\7z.exe" a -tzip "%BACKUP_DIR%\backup_%DATE%.zip" %SOURCE_DIR%
 if errorlevel 1 (
     echo [%TIME%] Primary backup failed. Attempting secondary backup...
-    set SECONDARY_BACKUP_DIR="D:\Backup\Vanilla_BackUp"
+    set SECONDARY_BACKUP_DIR="D:\PalWorld_BackUps"
     if not exist "%SECONDARY_BACKUP_DIR%" mkdir "%SECONDARY_BACKUP_DIR%"
     "C:\Program Files\7-Zip\7z.exe" a -tzip "%SECONDARY_BACKUP_DIR%\backup_%DATE%.zip" %SOURCE_DIR%
     if errorlevel 1 (
