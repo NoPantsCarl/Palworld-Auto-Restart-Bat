@@ -1,5 +1,15 @@
 # Palworld-Restart-Bat
-A bat that will auto restart the server, do discord webhooks, save, and back up before restarting. 
+
+A bat file designed to automatically restart the server, manage Discord webhooks, check for updates, broadcast warnings, save data, and create backups before restarting.
+
+## Description
+
+This bat file performs the following tasks:
+- Checks for updates.
+- Launches the server.
+- Sends a Discord webhook message indicating that the server is online after 2 minutes.
+- Initiates in-game broadcasts for a 5-minute warning and a 1-minute warning, as well as saving data, after 8 hours.
+- Performs backup of save files after shutting down the server, then loops back to checking for updates.
 
 ### Setting up Bat
 
@@ -17,7 +27,7 @@ A bat that will auto restart the server, do discord webhooks, save, and back up 
 
 7. **Lines 27, 35, and 43:** Update the server IP address, RCON port, and admin password to match your server configuration.
 
-8. **Line 14:** Optionally, adjust the timeout duration before server boot. The default is 120 seconds, allowing time for the server to initialize before players join.
+8. **Line 14:** Optionally, adjust the timeout duration after server boot. The default is 120 seconds, allowing time for the server to initialize before players join.
 
 9. **Line 53:** Set the path to your save game directory.
 
@@ -25,10 +35,12 @@ A bat that will auto restart the server, do discord webhooks, save, and back up 
 
 11. **Line 60:** Define a backup location in case of errors with the original backup directory.
 
-Feel free to reach out if you need further assistance! As i will probably update this guide to be more clear in the future!
+Feel free to reach out if you need further assistance! As I will probably update this guide to be more clear in the future!
 
-###Requirments
+#### Requirements
 1. [ARRCON](https://github.com/radj307/ARRCON)
-2. [7-Zip]([https://github.com/radj307/ARRCON](https://www.7-zip.org/)https://www.7-zip.org/)
+2. [7-Zip](https://www.7-zip.org/)
 3. Running Windows and not Linux.
- 
+
+#### Note
+If you don't want to use Discord webhooks, you can remove line 14 and all the other lines that start with curl.
