@@ -7,7 +7,7 @@ A bat file designed to automatically restart the server, manage Discord webhooks
 This bat file performs the following tasks:
 - Checks for updates.
 - Launches the server.
-- Sends a Discord webhook message indicating that the server is online after 2 minutes.
+- Sends a Discord webhook message indicating that the server is online after 2 minutes and at the 5 min warning.
 - Initiates in-game broadcasts for a 5-minute warning and a 1-minute warning, as well as saving data, after 8 hours.
 - Performs backup of save files after shutting down the server, then loops back to checking for updates.
 
