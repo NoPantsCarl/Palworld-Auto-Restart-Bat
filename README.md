@@ -21,7 +21,7 @@ This bat file performs the following tasks:
 
 3. **Line 6:** Update the file path in the batch file to point to your `steamcmd.exe`. This ensures proper server updates.
 
-4. **Line 16:** Adjust the duration of the server restart by changing the timeout value (in seconds). For instance, for an 8-hour restart, set it to `timeout /t 28800`.
+4. **Line 16:** Adjust the duration of the server restart by changing the timeout value (in seconds). For instance, for an 8-hour restart, set it to `timeout /t 14400` to do a backup half way.
 
 5. **Customize the messages sent to Discord with the lines that start with curl. Modify "Server One Is Online" and "Server One 5 Min Restart Warning" to suit your preferences.
 
