@@ -1,3 +1,21 @@
+# Palworld-Restart-Bat
+
+A batch file designed to automatically restart the server, send Discord webhook messages, check for updates, broadcast warnings, save data, restart on crash, auto-backup every 4 hours, and create backups before restarting.
+
+## Description
+
+This batch file performs the following tasks:
+
+- Checks for updates.
+- Launches the server.
+- Sends a Discord webhook message indicating that the server is online after 2 minutes and at the 5-minute warning.
+- Initiates in-game broadcasts for a 5-minute warning and a 1-minute warning, as well as saving data, after 8 hours.
+- Initiates in-game broadcasts for a restart warning and a 1-minute warning, as well as saving data, after 8 hours.
+- Performs a backup of save files after shutting down the server, then loops back to checking for updates.
+- Checks if the server has crashed and restarts.
+- Backs up every 4 hours.
+
+
 ### Setting up `start_server.bat`
 
 1. **Place the startup batch file (`start_server.bat`) in the same directory as your `PalServer-Win64-Test-Cmd.exe`.** For example, if your `PalServer-Win64-Test-Cmd.exe` is located at `\PalServer\Pal\Binaries\Win64`, place the batch file there.
