@@ -1,6 +1,6 @@
 # Palworld-Restart-Bat
 
-A bat file designed to automatically restart the server, manage Discord webhooks, check for updates, broadcast warnings, save data, and create backups before restarting.
+A bat file designed to automatically restart the server, sends Discord webhooks message, checks for updates, broadcasts warnings, saves data, restarts on crash, auto-backups every 4 hours, and creates backups before restarting.
 
 ## Description
 
@@ -8,8 +8,10 @@ This bat file performs the following tasks:
 - Checks for updates.
 - Launches the server.
 - Sends a Discord webhook message indicating that the server is online after 2 minutes and at the 5 min warning.
-- Initiates in-game broadcasts for a 5-minute warning and a 1-minute warning, as well as saving data, after 8 hours.
+- Initiates in-game broadcasts for a restart warning and a 1-minute warning, as well as saving data, after 8 hours.
 - Performs backup of save files after shutting down the server, then loops back to checking for updates.
+- Checks if the server has crashed and restarts.
+- Backs up every 4 hours.
 
 ### Setting up Bat
 
@@ -21,19 +23,19 @@ This bat file performs the following tasks:
 
 4. **Line 16:** Adjust the duration of the server restart by changing the timeout value (in seconds). For instance, for an 8-hour restart, set it to `timeout /t 28800`.
 
-5. **Lines 14 and 25:** Customize the messages sent to Discord. Modify "Server One Is Online" and "Server One 5 Min Restart Warning" to suit your preferences.
+5. **Customize the messages sent to Discord with the lines that start with curl. Modify "Server One Is Online" and "Server One 5 Min Restart Warning" to suit your preferences.
 
 6. **Your Discord Webhook URL:** Replace the placeholder with your actual Discord webhook URL.
 
-7. **Lines 27, 35, and 43:** Update the server IP address, RCON port, and admin password to match your server configuration.
+7. **IP address 192.0.0.1, 25575 RCON port, and admin password to match your server configuration.
 
 8. **Line 14:** Optionally, adjust the timeout duration after server boot. The default is 120 seconds, allowing time for the server to initialize before players join.
 
-9. **Line 53:** Set the path to your save game directory.
+9. **Line 76, 102:** Set the path to your save game directory.
 
-10. **Line 54:** Specify the directory where you want your backups to be stored.
+10. **Line 77, 103:** Specify the directory where you want your backups to be stored.
 
-11. **Line 60:** Define a backup location in case of errors with the original backup directory.
+11. **Line 83:** Define a backup location in case of errors with the original backup directory.
 
 Feel free to reach out if you need further assistance! As I will probably update this guide to be more clear in the future!
 
