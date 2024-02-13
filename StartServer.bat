@@ -24,6 +24,22 @@ if errorlevel 1 (
 
 echo [%TIME%] PalServer-Win64-Test-Cmd.exe is running.
 
+:4hour_backup
+echo [%TIME%] Initiating Four Hour Backup...
+start ARRCON.exe -H 192.0.0.1 -P 25577 -p "Admin Password" "save"
+set SOURCE_DIR="C:\PalWorldDedicatedServer\Server01\steamapps\common\PalServer\Pal\Saved\SaveGames\"
+set BACKUP_DIR="C:\Users\Administrator\Desktop\Vanilla_BackUp"
+set DATE=%date:~-4,4%%date:~-10,2%%date:~-7,2%_%time:~0,2%%time:~3,2%%time:~6,2%
+
+"C:\Program Files\7-Zip\7z.exe" a -tzip "%BACKUP_DIR%\backup_%DATE%.zip" %SOURCE_DIR%
+if errorlevel 1 (
+    echo [%TIME%] Four Hour Backup failed.
+) else (
+    echo [%TIME%] Four Hour Backup completed at %BACKUP_DIR%\backup_%DATE%.zip
+)
+
+timeout /t 14400 /nobreak > NUL 2>&1
+
 :broadcasting_5min
 curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"**\`​``diff\n- Server One 5 Min Restart Warning\`​``**\"}" Your Discord Webhook Url > NUL 2>&1
 echo [%TIME%] Broadcast 5 Min Warning...
@@ -94,21 +110,3 @@ if errorlevel 1 (
 timeout /t 300 /nobreak > NUL 2>&1
 
 goto update_check
-
-:4hour_backup
-echo [%TIME%] Initiating Four Hour Backup...
-start ARRCON.exe -H 192.0.0.1 -P 25577 -p "Admin Password" "save"
-set SOURCE_DIR="C:\PalWorldDedicatedServer\Server01\steamapps\common\PalServer\Pal\Saved\SaveGames\"
-set BACKUP_DIR="C:\Users\Administrator\Desktop\Vanilla_BackUp"
-set DATE=%date:~-4,4%%date:~-10,2%%date:~-7,2%_%time:~0,2%%time:~3,2%%time:~6,2%
-
-"C:\Program Files\7-Zip\7z.exe" a -tzip "%BACKUP_DIR%\backup_%DATE%.zip" %SOURCE_DIR%
-if errorlevel 1 (
-    echo [%TIME%] Four Hour Backup failed.
-) else (
-    echo [%TIME%] Four Hour Backup completed at %BACKUP_DIR%\backup_%DATE%.zip
-)
-
-timeout /t 14400 /nobreak > NUL 2>&1
-
-goto :4hour_backup
