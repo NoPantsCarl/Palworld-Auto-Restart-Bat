@@ -5,7 +5,7 @@ echo [%TIME%] Checking for updates...
 C:\PalWorldDedicatedServer\Server01\steamcmd.exe +login anonymous +app_update 2394010 +quit
 if errorlevel 1 (
     echo [%TIME%] Error: Checking for updates failed.
-    goto :start
+    goto :update_check
 )
 
 :start_server
@@ -17,7 +17,6 @@ timeout /t 28200 /nobreak > NUL 2>&1
 
 REM Check if PalServer-Win64-Test-Cmd.exe is running
 tasklist /FI "IMAGENAME eq C:\PalWorldDedicatedServer\Server01\steamapps\common\PalServer\Pal\Binaries\Win64\PalServer-Win64-Test-Cmd.exe" | find /I "PalServer-Win64-Test-Cmd.exe" >NUL
-
 if errorlevel 1 (
     echo [%TIME%] PalServer-Win64-Test-Cmd.exe is not running. Restarting...
     goto :start_server
@@ -80,7 +79,7 @@ set DATE=%date:~-4,4%%date:~-10,2%%date:~-7,2%_%time:~0,2%%time:~3,2%%time:~6,2%
 "C:\Program Files\7-Zip\7z.exe" a -tzip "%BACKUP_DIR%\backup_%DATE%.zip" %SOURCE_DIR%
 if errorlevel 1 (
     echo [%TIME%] Primary backup failed. Attempting secondary backup...
-    set SECONDARY_BACKUP_DIR="Vanilla_BackUp"
+    set SECONDARY_BACKUP_DIR="D:\Backup\Vanilla_BackUp"
     if not exist "%SECONDARY_BACKUP_DIR%" mkdir "%SECONDARY_BACKUP_DIR%"
     "C:\Program Files\7-Zip\7z.exe" a -tzip "%SECONDARY_BACKUP_DIR%\backup_%DATE%.zip" %SOURCE_DIR%
     if errorlevel 1 (
@@ -110,4 +109,6 @@ if errorlevel 1 (
     echo [%TIME%] Four Hour Backup completed at %BACKUP_DIR%\backup_%DATE%.zip
 )
 
-timeout /t 14400 > N
+timeout /t 14400 /nobreak > NUL 2>&1
+
+goto :4hour_backup
