@@ -41,7 +41,7 @@ if errorlevel 1 (
 timeout /t 14400 /nobreak > NUL 2>&1
 
 :broadcasting_5min
-curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"**\`​``diff\n- Server One 5 Min Restart Warning\`​``**\"}" Your Discord Webhook Url > NUL 2>&1
+curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"**```fix\nServer One 5 Min Warning```**\"}" Your Discord Webhook Url > NUL 2>&1
 echo [%TIME%] Broadcast 5 Min Warning...
 start ARRCON.exe -H 192.0.0.1 -P 25575 -p "Admin Password" "Broadcast ServerRestartIn5min."
 timeout /t 120 /nobreak > NUL 2>&1
