@@ -13,18 +13,11 @@ echo [%TIME%] Launching server...
 start "" "C:\SteamServers\steamapps\common\PalServer\Pal\Binaries\Win64\PalServer-Win64-Test-Cmd.exe" EpicApp=PalServer -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS
 timeout /t 120 /nobreak > NUL 2>&1
 curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"**```fix\nServer One Is Online```**\"}" Your Discord Webhook Url > NUL 2>&1
-
-REM Check if PalServer-Win64-Test-Cmd.exe is running
-tasklist /FI "IMAGENAME eq PalServer-Win64-Test-Cmd.exe" /FI "WINDOWTITLE eq Pal" | find /I "PalServer-Win64-Test-Cmd.exe" >NUL
-if errorlevel 1 (
-    echo [%TIME%] PalServer-Win64-Test-Cmd.exe is not running. Restarting...
-    goto :start_server
-)
-
 echo [%TIME%] PalServer-Win64-Test-Cmd.exe is running.
 
-:4hour_backup
 timeout /t 14100 /nobreak > NUL 2>&1
+
+:4hour_backup
 echo [%TIME%] Initiating Four Hour Backup...
 start ARRCON.exe -H 192.0.0.1 -P 25577 -p "Admin Password" "save"
 set SOURCE_DIR="C:\SteamServers\steamapps\common\PalServer\Pal\Pal\Saved\SaveGames\"
@@ -88,7 +81,7 @@ if errorlevel 1 (
 
 :backup
 echo [%TIME%] Backing Up...
-set SOURCE_DIR="C:\SteamServers\steamapps\common\PalServer\Pal\\Saved\SaveGames\"
+set SOURCE_DIR="C:\SteamServers\steamapps\common\PalServer\Pal\Saved\SaveGames\"
 set BACKUP_DIR="C:\Users\NoPantsCarl\Documents\PalWorld_BackUps"
 set DATE=%date:~-4,4%%date:~-10,2%%date:~-7,2%_%time:~0,2%%time:~3,2%%time:~6,2%
 
