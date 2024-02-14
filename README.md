@@ -13,7 +13,7 @@ This batch file performs the following tasks:
 - Initiates in-game broadcasts for a restart warning and a 1-minute warning, as well as saving data, after 8 hours.
 - Performs a backup of save files after shutting down the server, then loops back to checking for updates.
 - Backs up every 4 hours.
-- Palns to make a working checking if crashed and restarting with rem.
+- Palns to make checki if crashed and restarting with rem.
 
 ### Setting up `start_server.bat`
 
