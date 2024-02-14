@@ -26,7 +26,7 @@ This batch file performs the following tasks:
 
 4. **Change `C:\SteamServers\steamapps\common\PalServer\Pal\Binaries\Win64\PalServer-Win64-Test-Cmd.exe` to match the location of your `PalServer-Win64-Test-Cmd.exe`.**
 
-5. **Add any command line arguments you need for your server after `EpicApp=PalServer -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS`.**
+5. **Add any command line arguments you need for your server after `EpicApp=PalServer -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS`. Such as `-port=8211` `-RCONPort=25575.` `-queryport=27015`** 
 
 6. **Ensure IP address `192.0.0.1`, port `25575` for RCON, and admin password match your server configuration.**
 
