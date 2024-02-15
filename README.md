@@ -61,12 +61,12 @@ if errorlevel 1 (
 ```
 
 
-#### Requirements
+## Requirements
 1. [ARRCON](https://github.com/radj307/ARRCON)
 2. [7-Zip](https://www.7-zip.org/)
 3. Running Windows and not Linux.
 
-#### Note
+## Note
 If you don't want to use Discord webhooks, you can remove line 14 (`timeout /t 120`) and all the other lines that start with `curl`.
 
 Feel free to reach out if you need further assistance! I might update this guide to be clearer in the future!
