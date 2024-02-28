@@ -11,8 +11,9 @@ if errorlevel 1 (
 :start_server
 echo [%TIME%] Launching server...
 start "" "C:\SteamServers\steamapps\common\PalServer\Pal\Binaries\Win64\PalServer-Win64-Test-Cmd.exe" EpicApp=PalServer -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS
+curl -X POST -H "Content-Type: application/json" -d "{\"embeds\": [{\"title\": \"Your Server Name\", \"description\": \"STARTING\nPalworld\npowered by NoPantsCarl\", \"color\": 16763904}]}" "Your Discord Webhook URL" > NUL 2>&1
 timeout /t 120 /nobreak > NUL 2>&1
-curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"**```fix\nServer One Is Online```**\"}" Your Discord Webhook Url > NUL 2>&1
+curl -X POST -H "Content-Type: application/json" -d "{\"embeds\": [{\"title\": \"Your Server Name\", \"description\": \"ONLINE\nPalworld\npowered by NoPantsCarl\", \"color\": 65280}]}" "Your Discord Webhook URL" > NUL 2>&1
 echo [%TIME%] PalServer-Win64-Test-Cmd.exe is running.
 
 timeout /t 14100 /nobreak > NUL 2>&1
@@ -34,7 +35,6 @@ if errorlevel 1 (
 timeout /t 14400 /nobreak > NUL 2>&1
 
 :broadcasting_5min
-curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"**```fix\nServer One 5 Min Warning```**\"}" Your Discord Webhook Url > NUL 2>&1
 echo [%TIME%] Broadcast 5 Min Warning...
 start ARRCON.exe -H 192.0.0.1 -P 25575 -p "Admin Password" "Broadcast ServerRestartIn5min."
 timeout /t 120 /nobreak > NUL 2>&1
@@ -73,7 +73,9 @@ if errorlevel 1 (
 :shutdown_1min
 echo [%TIME%] Broadcasting shutdown warning...
 start ARRCON.exe -H 192.0.0.1 -P 25575 -p "Admin Password" "shutdown 60 ServerRestartIn1minLOGOUTNOW."
-timeout /t 80 /nobreak > NUL 2>&1
+timeout /t 50 /nobreak > NUL 2>&1
+curl -X POST -H "Content-Type: application/json" -d "{\"embeds\": [{\"title\": \"Your Server Name\", \"description\": \"RESTARTING\nPalworld\npowered by NoPantsCarl\", \"color\": 16711680}]}" "Your Discord Webhook URL"
+timeout /t 30 /nobreak > NUL 2>&1
 if errorlevel 1 (
     echo [%TIME%] Error: Broadcasting shutdown warning failed.
     goto :shutdown_1min
