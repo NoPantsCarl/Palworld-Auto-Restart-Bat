@@ -74,7 +74,7 @@ if errorlevel 1 (
 echo [%TIME%] Broadcasting shutdown warning...
 start ARRCON.exe -H 192.0.0.1 -P 25575 -p "Admin Password" "shutdown 60 ServerRestartIn1minLOGOUTNOW."
 timeout /t 50 /nobreak > NUL 2>&1
-curl -X POST -H "Content-Type: application/json" -d "{\"embeds\": [{\"title\": \"Your Server Name\", \"description\": \"RESTARTING\nPalworld\npowered by NoPantsCarl\", \"color\": 16711680}]}" "Your Discord Webhook URL"
+curl -X POST -H "Content-Type: application/json" -d "{\"embeds\": [{\"title\": \"Your Server Name\", \"description\": \"RESTARTING\nPalworld\npowered by NoPantsCarl\", \"color\": 16711680}]}" "Your Discord Webhook URL" > NUL 2>&1
 timeout /t 30 /nobreak > NUL 2>&1
 if errorlevel 1 (
     echo [%TIME%] Error: Broadcasting shutdown warning failed.
