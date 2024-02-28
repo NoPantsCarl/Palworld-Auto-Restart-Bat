@@ -38,7 +38,7 @@ This batch file performs the following tasks:
 
 10. **Replace `Your Discord Webhook URL` with your actual Discord webhook URL.**
 
-11. **Customize `Server One Is Online` and `Server One 5 Min Warning` to the desired messages for your Discord webhook.**
+11. **Customize `Your Server Name`,`STARTING`,`ONLINE` and `RESTARTING` to the desired messages for your Discord webhook.**
 
 12. **Adjust the duration of the server restart by changing the `timeout` value (in seconds) after `timeout /t 14400`. For example, for an 8-hour restart, set it to `timeout /t 14400`.**
 
