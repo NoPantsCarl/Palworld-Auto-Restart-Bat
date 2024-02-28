@@ -43,23 +43,8 @@ This batch file performs the following tasks:
 
 13. **Optionally, adjust the timeout duration after server boot on line 14 (`timeout /t 120`). The default is 120 seconds, allowing time for the server to initialize before players join.**
 
-###Checking if Server is Running (Work in Progress) 
-To ensure the server is running, we use a simple check to see if PalServer-Win64-Test-Cmd.exe process is active. Paste this code in:
-
-```
-echo [%TIME%] PalServer-Win64-Test-Cmd.exe is running.
-
-:check_server
-REM Check if PalServer-Win64-Test-Cmd.exe is running
-tasklist /FI "IMAGENAME eq PalServer-Win64-Test-Cmd.exe" | find /I "PalServer-Win64-Test-Cmd.exe" >NUL
-if errorlevel 1 (
-    echo [%TIME%] PalServer-Win64-Test-Cmd.exe is not running. Restarting...
-    goto :start_server
-)
-
-:4hour_backup
-```
-
+### Server Monitoring (ServerWatcher.bat)
+To verify the server's status, we employ a supplementary batch file to check its activity. Place this batch file in the same directory as the server startup script. Adjust the path `C:\SteamServers\steamapps\common\PalServer\Pal\Binaries\Win64` to match the location of your server startup script.
 
 ## Requirements
 1. [ARRCON](https://github.com/radj307/ARRCON)
